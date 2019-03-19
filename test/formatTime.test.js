@@ -16,5 +16,8 @@ test('time of seconds and minutes returns as expected', () => {
   expect(formatTime(122)).toBe('2 minutes and 2 seconds');
 });
 
+test('time minutes only returns as expected', () => {
+  expect(formatTime(120)).toBe('2 minutes');
+});
 //TODO test single minute no seconds
 //TODO test hour variants
