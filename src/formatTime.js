@@ -8,7 +8,8 @@ function formatTime(seconds) {
   if (seconds == 0) {
     return 'none';
   } else if (getMinutes() > 1) {
-    return `${Math.floor(getMinutes())} minute and ${getLeftOverSeconds()} seconds`;
+    let minuteText = getMinutes() > 2 ? 'minutes' : 'minute';
+    return `${Math.floor(getMinutes())} ${minuteText} and ${getLeftOverSeconds()} seconds`;
   } else {
    return `${seconds} seconds`;
   }
