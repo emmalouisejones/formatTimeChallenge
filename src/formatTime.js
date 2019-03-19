@@ -17,6 +17,10 @@ function formatTime(seconds) {
     return `${Math.floor(minuteValueCalc())} ${minuteValueCalc() >= 2 ?  'minutes' :  'minute'}`;
   }
 
+  const getHoursText = (hourValueCalc) => {
+    return `${Math.floor(hourValueCalc())} ${hourValueCalc() >= 2 ?  'hours' :  'hour'}`;
+  }
+
   const buildHoursResponse = () => {
     const getLeftoverMinutes = () => {
       return Math.floor(getMinutes()) - 60 * Math.floor(getHours());
@@ -24,7 +28,7 @@ function formatTime(seconds) {
     let minuteText = getMinutesText(getLeftoverMinutes);
     let secondsText = getSecondsText();
 
-    return `${Math.floor(getHours())} hour, ${minuteText}${secondsText}`;
+    return `${getHoursText(getHours)}, ${minuteText}${secondsText}`;
   }
 
 
