@@ -8,20 +8,42 @@ function formatTime(seconds) {
 
   const getHours = () => seconds / ONE_HOUR;
 
+
+  const getSecondsText = () => {
+    return getLeftOverSeconds() > 0 ? ` and ${getLeftOverSeconds()} seconds` : '';
+  }
+
+  const getMinutesText = (minuteValueCalc) => {
+    return `${Math.floor(minuteValueCalc())} ${minuteValueCalc() >= 2 ?  'minutes' :  'minute'}`;
+  }
+
+  const buildHoursResponse = () => {
+    const getLeftoverMinutes = () => {
+      return Math.floor(getMinutes()) - 60 * Math.floor(getHours());
+    }
+    let minuteText = getMinutesText(getLeftoverMinutes);
+    let secondsText = getSecondsText();
+
+    return `${Math.floor(getHours())} hour, ${minuteText}${secondsText}`;
+  }
+
+
+  const buildMinutesResponse = () => {
+    let minuteText = getMinutesText(getMinutes);
+    let secondsText = getSecondsText();
+    return `${minuteText}${secondsText}`;
+  }
+
   if (seconds == 0) {
     return 'none';
-  } else if (getHours() > 1){
-    let minuteValue = Math.floor(getMinutes()) - 60 * Math.floor(getHours());
-    let minuteText = minuteValue >= 2 ? ' minutes' : ' minute';
-    let secondsText = getLeftOverSeconds() > 0 ? ` and ${getLeftOverSeconds()} seconds` : '';
-
-    return `${Math.floor(getHours())} hour, ${minuteValue}${minuteText}${secondsText}`;
-  } else if (getMinutes() > 1) {
-    let minuteText = getMinutes() >= 2 ? ' minutes' : ' minute';
-    let secondsText = getLeftOverSeconds() > 0 ? ` and ${getLeftOverSeconds()} seconds` : '';
-    return `${Math.floor(getMinutes())}${minuteText}${secondsText}`;
   } else {
-   return `${seconds} seconds`;
+    if (getHours() > 1){
+      return buildHoursResponse();
+    } else if (getMinutes() > 1) {
+      return buildMinutesResponse();
+    } else {
+      return `${seconds} seconds`;
+    }
   }
 
 }
