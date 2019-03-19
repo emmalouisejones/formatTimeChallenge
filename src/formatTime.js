@@ -2,48 +2,58 @@ function formatTime(seconds) {
   const ONE_MINUTE = 60;
   const ONE_HOUR = 3600;
 
+  let timeByUnit;
+
   const getMinutes = () => seconds / ONE_MINUTE;
 
   const getLeftOverSeconds = () => seconds % ONE_MINUTE;
 
   const getHours = () => seconds / ONE_HOUR;
 
+  const getLeftoverMinutes = () => {
+    return Math.floor(getMinutes()) - 60 * Math.floor(getHours());
+  }
 
   const getSecondsText = () => {
     return getLeftOverSeconds() > 0 ? ` and ${getLeftOverSeconds()} seconds` : '';
   }
 
-  const getMinutesText = (minuteValueCalc) => {
-    return `${Math.floor(minuteValueCalc())} ${minuteValueCalc() >= 2 ?  'minutes' :  'minute'}`;
+  const getMinutesText = () => {
+    return `${timeByUnit.get('MINUTES')} ${timeByUnit.get('MINUTES') >= 2 ?  'minutes' :  'minute'}`;
   }
 
-  const getHoursText = (hourValueCalc) => {
-    return `${Math.floor(hourValueCalc())} ${hourValueCalc() >= 2 ?  'hours' :  'hour'}`;
+  const getHoursText = () => {
+    return `${timeByUnit.get('HOURS')} ${timeByUnit.get('HOURS') >= 2  ?  'hours' :  'hour'}`;
   }
 
   const buildHoursResponse = () => {
-    const getLeftoverMinutes = () => {
-      return Math.floor(getMinutes()) - 60 * Math.floor(getHours());
-    }
-    let minuteText = getMinutesText(getLeftoverMinutes);
-    let secondsText = getSecondsText();
-
-    return `${getHoursText(getHours)}, ${minuteText}${secondsText}`;
+    return `${getHoursText()}, ${getMinutesText()}${getSecondsText()}`;
   }
 
 
   const buildMinutesResponse = () => {
-    let minuteText = getMinutesText(getMinutes);
-    let secondsText = getSecondsText();
-    return `${minuteText}${secondsText}`;
+    return `${getMinutesText()}${getSecondsText()}`;
+  }
+
+
+  const calculateTimeByUnit = (seconds) =>  {
+    let timeByUnit = new Map();
+    let hours = Math.floor(seconds / ONE_HOUR);
+    if (hours >= 1) timeByUnit.set('HOURS', hours);
+    let mins = getLeftoverMinutes();
+    if (mins >= 1) timeByUnit.set('MINUTES', mins);
+    let secs = getLeftOverSeconds();
+    if (secs >= 1) timeByUnit.set('SECONDS', secs);
+    return timeByUnit;
   }
 
   if (seconds == 0) {
     return 'none';
   } else {
-    if (getHours() > 1){
+    timeByUnit = calculateTimeByUnit(seconds);
+    if (timeByUnit.has('HOURS')) {
       return buildHoursResponse();
-    } else if (getMinutes() > 1) {
+    } else if (timeByUnit.has('MINUTES')) {
       return buildMinutesResponse();
     } else {
       return `${seconds} seconds`;

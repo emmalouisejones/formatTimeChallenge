@@ -28,6 +28,13 @@ test('time of hours, minutes and seconds returns as expected', () => {
   expect(formatTime(7262)).toBe('2 hours, 1 minute and 2 seconds');
 });
 
+// test('time of hours and minutes only returns as expected', () => {
+//   expect(formatTime(7260)).toBe('2 hours and 1 minute');
+// });
+
+// test('time of hours and seconds only returns as expected', () => {
+//   expect(formatTime(7201)).toBe('2 hours and 1 second');
+// });
 //TODO test hour variants
 //TODO test days variants
 //TODO test year variants
