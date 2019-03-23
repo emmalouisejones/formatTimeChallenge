@@ -1,6 +1,6 @@
 function formatTime(seconds) {
-  const ONE_MINUTE = 60;
-  const ONE_HOUR = 3600;
+  const ONE_MINUTE = 60,
+        ONE_HOUR = 3600;
 
   let timeByUnit;
 
@@ -14,61 +14,49 @@ function formatTime(seconds) {
     return Math.floor(getMinutes()) - 60 * Math.floor(getHours());
   }
 
-  const getSecondsText = () => {
-    return getLeftOverSeconds() > 0 ? ` and ${getLeftOverSeconds()} seconds` : '';
-  }
-
-  const getMinutesText = () => {
-    return `${timeByUnit.get('MINUTES')} ${timeByUnit.get('MINUTES') >= 2 ?  'minutes' :  'minute'}`;
-  }
-
-  const getHoursText = () => {
-    return `${timeByUnit.get('HOURS')} ${timeByUnit.get('HOURS') >= 2  ?  'hours' :  'hour'}`;
-  }
-
-  const buildHoursResponse = () => {
-    let mins;
-    if (timeByUnit.has('MINUTES')) {
-      if (timeByUnit.has('SECONDS')) {
-        mins = `, ${getMinutesText()}`
-      } else {
-        mins = ` and ${getMinutesText()}`
-      }
-
-    } else {
-      mins = 'and '
-    }
-    return `${getHoursText()}${mins}${getSecondsText()}`;
-  }
-
-
-  const buildMinutesResponse = () => {
-    return `${getMinutesText()}${getSecondsText()}`;
-  }
-
-
   const calculateTimeByUnit = (seconds) =>  {
     let timeByUnit = new Map();
     let hours = Math.floor(seconds / ONE_HOUR);
-    if (hours >= 1) timeByUnit.set('HOURS', hours);
+    if (hours >= 1) timeByUnit.set('hour', hours);
     let mins = getLeftoverMinutes();
-    if (mins >= 1) timeByUnit.set('MINUTES', mins);
+    if (mins >= 1) timeByUnit.set('minute', mins);
     let secs = getLeftOverSeconds();
-    if (secs >= 1) timeByUnit.set('SECONDS', secs);
+    if (secs >= 1) timeByUnit.set('second', secs);
     return timeByUnit;
   }
 
+  //would be much nicer using Object.entries() to get the index but cant get it to work in this project :(
+  const buildTimeText = () => {
+    let count = 0,
+        text = '';
+
+    const isLastSeparator = (map) => {
+      return count + 1 != map.size;
+    }
+
+    timeByUnit.forEach((value, key, map) => {
+      let units,
+          separator;
+      count = count+1;
+      units = value >= 2  ? ` ${key}s` : ` ${key}`;
+      separator = isLastSeparator(map) ? ',' : ' and';
+      const isLastValue = () => {
+        return count != map.size;
+      }
+
+      if (isLastValue()) {
+        text = `${text}${value}${units}${separator} `;
+      } else {
+        text = `${text}${value}${units}`;
+      }
+    });
+    return text;
+  }
   if (seconds == 0) {
     return 'none';
   } else {
     timeByUnit = calculateTimeByUnit(seconds);
-    if (timeByUnit.has('HOURS')) {
-      return buildHoursResponse();
-    } else if (timeByUnit.has('MINUTES')) {
-      return buildMinutesResponse();
-    } else {
-      return `${seconds} seconds`;
-    }
+    return buildTimeText();
   }
 
 }
