@@ -29,7 +29,12 @@ function formatTime(seconds) {
   const buildHoursResponse = () => {
     let mins;
     if (timeByUnit.has('MINUTES')) {
-      mins = `, ${getMinutesText()}`
+      if (timeByUnit.has('SECONDS')) {
+        mins = `, ${getMinutesText()}`
+      } else {
+        mins = ` and ${getMinutesText()}`
+      }
+
     } else {
       mins = 'and '
     }
