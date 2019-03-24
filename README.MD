@@ -2,6 +2,8 @@ Function to process an integer representing a time and return a string in a more
 
 Steps to run locally :
 
-clone this repo
-install jest : npm install --save-dev jest
-run tests : npm run test 
+Clone this repo
+
+Install jest : npm install --save-dev jest
+
+Run tests : npm run test 
