@@ -1,14 +1,12 @@
 function formatTime(seconds) {
-  const ONE_MINUTE = 60,
-        ONE_HOUR = 3600,
-        ONE_DAY = 86400,
-        ONE_YEAR = 31536000;
+  const ONE_MINUTE  = 60,
+        ONE_HOUR    = 3600,
+        ONE_DAY     = 86400,
+        ONE_YEAR    = 31536000;
 
   let timeByUnit;
 
   const getMinutes = () => seconds / ONE_MINUTE;
-
-  const getLeftOverSeconds = () => seconds % ONE_MINUTE;
 
   const getHours = () => seconds / ONE_HOUR;
 
@@ -16,6 +14,7 @@ function formatTime(seconds) {
 
   const getYears = () => seconds / ONE_YEAR;
 
+  const getLeftOverSeconds = () => seconds % ONE_MINUTE;
 
   const getLeftoverMinutes = () => {
     return Math.floor(getMinutes()) - 60 * Math.floor(getHours());
@@ -57,7 +56,7 @@ function formatTime(seconds) {
       let units,
           separator;
       count = count+1;
-      units = value >= 2  ? ` ${key}s` : ` ${key}`;
+      units = value > 1  ? ` ${key}s` : ` ${key}`;
       separator = isLastSeparator(map) ? ',' : ' and';
       const isLastValue = () => {
         return count != map.size;
@@ -71,6 +70,7 @@ function formatTime(seconds) {
     });
     return text;
   }
+
   if (seconds == 0) {
     return 'none';
   } else {
