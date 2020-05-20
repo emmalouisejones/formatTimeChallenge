@@ -1,17 +1,17 @@
 const formatTime = require('../src/formatTime2');
 test('time of zero returns none', () => {
-  expect(formatTime2(0)).toBe('none');
+  expect(formatTime(0)).toBe('none');
+});
+
+test('time of seconds returns seconds only', () => {
+  expect(formatTime(2)).toBe('2 seconds');
 });
 
 
+test('time of seconds and minute returns as expected', () => {
+  expect(formatTime(62)).toBe('1 minute and 2 seconds');
+});
 
-
-
-
-//
-// test('time of seconds returns seconds only', () => {
-//   expect(formatTime(2)).toBe('2 seconds');
-// });
 //
 // test('time of seconds and minute returns as expected', () => {
 //   expect(formatTime(62)).toBe('1 minute and 2 seconds');
