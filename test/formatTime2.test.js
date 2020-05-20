@@ -12,18 +12,13 @@ test('time of seconds and minute returns as expected', () => {
   expect(formatTime(62)).toBe('1 minute and 2 seconds');
 });
 
-//
-// test('time of seconds and minute returns as expected', () => {
-//   expect(formatTime(62)).toBe('1 minute and 2 seconds');
-// });
-//
-// test('time of seconds and minutes returns as expected', () => {
-//   expect(formatTime(122)).toBe('2 minutes and 2 seconds');
-// });
-//
-// test('time of minutes only returns as expected', () => {
-//   expect(formatTime(120)).toBe('2 minutes');
-// });
+test('time of seconds and minutes returns as expected', () => {
+  expect(formatTime(122)).toBe('2 minutes and 2 seconds');
+});
+
+test('time of minutes only returns as expected', () => {
+  expect(formatTime(120)).toBe('2 minutes');
+});
 //
 // test('time of hour, minutes and seconds returns as expected', () => {
 //   expect(formatTime(3662)).toBe('1 hour, 1 minute and 2 seconds');
