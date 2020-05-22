@@ -52,16 +52,16 @@ test('time of days hour minutes and seconds only returns as expected', () => {
   expect(formatTime(90061)).toBe('1 day, 1 hour, 1 minute and 1 second');
 })
 
-// test('time of years only returns as expected', () => {
-//   expect(formatTime(31536000)).toBe('1 year');
-// });
-// test('time of years and days returns as expected', () => {
-//   expect(formatTime(62985600)).toBe('1 year and 364 days');
-// });
-//
-// test('time of years, days, hours, minutes and seconds returns as expected', () => {
-//   expect(formatTime(62985539)).toBe('1 year, 363 days, 23 hours, 58 minutes and 59 seconds');
-// });
+test('time of years only returns as expected', () => {
+  expect(formatTime(31536000)).toBe('1 year');
+});
+test('time of years and days returns as expected', () => {
+  expect(formatTime(62985600)).toBe('1 year and 364 days');
+});
+
+test('time of years, days, hours, minutes and seconds returns as expected', () => {
+  expect(formatTime(62985539)).toBe('1 year, 363 days, 23 hours, 58 minutes and 59 seconds');
+});
 //
 // test('negative seconds', () => {
 //   expect(formatTime(-1)).toBe('none');
