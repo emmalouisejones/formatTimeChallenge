@@ -23,25 +23,31 @@ function formatTime(seconds) {
   const calculateTimeByUnit = (seconds) => {
     let timeByUnit = new Map();
     let years = getYears();
+
     if (years >= 1) {
       timeByUnit.set('year', years);
     }
+
     let days = getRemainingDays();
     if (days >= 1) {
       timeByUnit.set("day", days);
     }
+
     let remainingHours = getRemainingHours();
     if (remainingHours >= 1) {
       timeByUnit.set("hour", remainingHours);
     }
+
     let remainingMinutes = getRemainingMinutes();
     if (remainingMinutes >= 1) {
       timeByUnit.set("minute", remainingMinutes);
     }
+
     let remainingSeconds = getRemainingSeconds();
     if (remainingSeconds >= 1) {
       timeByUnit.set("second", remainingSeconds);
     }
+
     return timeByUnit;
   }
 
@@ -59,10 +65,10 @@ function formatTime(seconds) {
       count = count+1;
       units = value > 1  ? ` ${key}s` : ` ${key}`;
       separator = isLastSeparator(map) ? ',' : ' and';
-      const isLastValue = () => {
+      const isMoreValues = () => {
         return count != map.size;
       }
-      if (isLastValue()) {
+      if (isMoreValues()) {
         text = `${text}${value}${units}${separator} `;
       } else {
         text = `${text}${value}${units}`;
