@@ -3,16 +3,21 @@ function formatTime(seconds) {
         ONE_HOUR    = 3600,
         ONE_DAY     = 86400;
 
+  const getMinutes = () => Math.floor(seconds / ONE_MINUTE );
+
   const getHours = () => Math.floor(seconds/ ONE_HOUR);
 
   const getDays = () => Math.floor(seconds / ONE_DAY);
 
   const getRemainingHours = () => getHours() - (24 * getDays());
 
+  const getRemainingMinutes = () => getMinutes() - (60 * getHours());
+
+  const getRemainingSeconds = () => seconds % 60;
 
   const calculateTimeByUnit = (seconds) => {
     let timeByUnit = new Map();
-    let days = Math.floor(seconds / ONE_DAY);
+    let days = getDays();
     if (days >= 1) {
       timeByUnit.set("day", days);
     }
@@ -20,12 +25,11 @@ function formatTime(seconds) {
     if (remainingHours >= 1) {
       timeByUnit.set("hour", remainingHours);
     }
-    let minutes = Math.floor(seconds / ONE_MINUTE ),
-      remainingMinutes = minutes - (60 * getHours()),
-      remainingSeconds = seconds % 60;
+    let remainingMinutes = getRemainingMinutes();
     if (remainingMinutes >= 1) {
       timeByUnit.set("minute", remainingMinutes);
     }
+    let remainingSeconds = getRemainingSeconds();
     if (remainingSeconds >= 1) {
       timeByUnit.set("second", remainingSeconds);
     }
