@@ -77,7 +77,7 @@ function formatTime(seconds) {
     return text;
   }
 
-  if (seconds <= 0) {
+  if (seconds <= 0 || isNaN(seconds)) {
     return 'none';
   } else {
     timeByUnit = calculateTimeByUnit(seconds);

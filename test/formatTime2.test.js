@@ -62,11 +62,11 @@ test('time of years and days returns as expected', () => {
 test('time of years, days, hours, minutes and seconds returns as expected', () => {
   expect(formatTime(62985539)).toBe('1 year, 363 days, 23 hours, 58 minutes and 59 seconds');
 });
-//
-// test('negative seconds', () => {
-//   expect(formatTime(-1)).toBe('none');
-// });
-//
-// test('non numeric input', () => {
-//   expect(formatTime('emma')).toBe('none');
-// });
+
+test('negative seconds', () => {
+  expect(formatTime(-1)).toBe('none');
+});
+
+test('non numeric input', () => {
+  expect(formatTime('emma')).toBe('none');
+});
