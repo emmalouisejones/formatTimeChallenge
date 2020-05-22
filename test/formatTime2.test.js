@@ -20,10 +20,10 @@ test('time of minutes only returns as expected', () => {
   expect(formatTime(120)).toBe('2 minutes');
 });
 //
-// test('time of hour, minutes and seconds returns as expected', () => {
-//   expect(formatTime(3662)).toBe('1 hour, 1 minute and 2 seconds');
-// });
-//
+test('time of hour, minutes and seconds returns as expected', () => {
+  expect(formatTime(3662)).toBe('1 hour, 1 minute and 2 seconds');
+});
+
 // test('time of hours, minutes and seconds returns as expected', () => {
 //   expect(formatTime(7262)).toBe('2 hours, 1 minute and 2 seconds');
 // });
