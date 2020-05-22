@@ -35,23 +35,23 @@ test('time of hours and minutes only returns as expected', () => {
 test('time of hours and seconds only returns as expected', () => {
   expect(formatTime(7201)).toBe('2 hours and 1 second');
 });
-//
-// test('time of days only returns as expected', () => {
-//   expect(formatTime(86400)).toBe('1 day');
-// });
-//
-// test('time of days and seconds only returns as expected', () => {
-//   expect(formatTime(86401)).toBe('1 day and 1 second');
-// });
-//
-// test('time of days minutes and seconds only returns as expected', () => {
-//   expect(formatTime(86461)).toBe('1 day, 1 minute and 1 second');
-// });
-//
-// test('time of days hour minutes and seconds only returns as expected', () => {
-//   expect(formatTime(90061)).toBe('1 day, 1 hour, 1 minute and 1 second');
-// })
-//
+
+test('time of days only returns as expected', () => {
+  expect(formatTime(86400)).toBe('1 day');
+});
+
+test('time of days and seconds only returns as expected', () => {
+  expect(formatTime(86401)).toBe('1 day and 1 second');
+});
+
+test('time of days minutes and seconds only returns as expected', () => {
+  expect(formatTime(86461)).toBe('1 day, 1 minute and 1 second');
+});
+
+test('time of days hour minutes and seconds only returns as expected', () => {
+  expect(formatTime(90061)).toBe('1 day, 1 hour, 1 minute and 1 second');
+})
+
 // test('time of years only returns as expected', () => {
 //   expect(formatTime(31536000)).toBe('1 year');
 // });
