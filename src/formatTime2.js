@@ -23,31 +23,15 @@ function formatTime(seconds) {
   const calculateTimeByUnit = (seconds) => {
     let timeByUnit = new Map();
     let years = getYears();
-
-    if (years >= 1) {
-      timeByUnit.set('year', years);
-    }
-
+    if (years >= 1) timeByUnit.set('year', years);
     let days = getRemainingDays();
-    if (days >= 1) {
-      timeByUnit.set("day", days);
-    }
-
+    if (days >= 1) timeByUnit.set("day", days);
     let remainingHours = getRemainingHours();
-    if (remainingHours >= 1) {
-      timeByUnit.set("hour", remainingHours);
-    }
-
+    if (remainingHours >= 1) timeByUnit.set("hour", remainingHours);
     let remainingMinutes = getRemainingMinutes();
-    if (remainingMinutes >= 1) {
-      timeByUnit.set("minute", remainingMinutes);
-    }
-
+    if (remainingMinutes >= 1) timeByUnit.set("minute", remainingMinutes);
     let remainingSeconds = getRemainingSeconds();
-    if (remainingSeconds >= 1) {
-      timeByUnit.set("second", remainingSeconds);
-    }
-
+    if (remainingSeconds >= 1)  timeByUnit.set("second", remainingSeconds);
     return timeByUnit;
   }
 
